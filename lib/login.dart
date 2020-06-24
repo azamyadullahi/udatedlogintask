@@ -4,26 +4,27 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:logintasktwo/main.dart';
+import 'package:logintasktwo/signup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:logintasktwo/HomePage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 
 class Fact {
-  final String sid;
-  final String stoken;
-  final String smessage;
+  String sid;
+  String stoken;
+  String smessage;
 
   Fact({this.sid, this.stoken, this.smessage});
 
-  factory Fact.fromJson(Map<String, dynamic> json) {
+  factory Fact.fromJson(Map<String,dynamic> json) {
     return Fact(
       sid: json['Id'],
       stoken: json['Token'],
       smessage: json['Message'],
     );
   }
-  Future<String> testAPi() async {
+  Future<Fact> testAPi() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('sid', sid);
     print(sid);
@@ -122,6 +123,17 @@ class _LoginUserState extends State<LoginUser>{
                     }
                   },
                   child: Text("Log In")
+              ),
+              FlatButton(
+                  onPressed: ()  {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => signup(),
+                        )
+                    );
+                  },
+                  child: Text("Sign up")
               ),
 
             ],
