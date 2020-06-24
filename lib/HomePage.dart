@@ -16,7 +16,7 @@ class FactTwo {
 
   FactTwo({this.stotalExamGiven, this.suserTotalAbsent, this.sbestScore, this.sbestScoreDate, this.saveragePercent});
 
-  factory FactTwo.fromJson(Map<int,dynamic> json) {
+  factory FactTwo.fromJson(Map<String,dynamic> json) {
     return FactTwo(
       stotalExamGiven: json['totalExamGiven'],
       suserTotalAbsent: json['userTotalAbsent'],
